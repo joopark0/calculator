@@ -3,20 +3,62 @@ body{
     align-items: center;
     justify-content: center;
     margin: 100px;
+    background-color: #212529;
 }
 
 .container{
     display: flex;
-    background-color:antiquewhite;
+    background-color:#495057;
     width: 400px;
-    height: 600px;
+    height: 500px;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #screen{
     margin: 5px;
     width: 370px;
     height: 100px;
-    background-color: aliceblue;
+    background-color: #CED4DA;
+    display: flex;
+    flex-direction: column;
+}
+
+#operatingscreen{
     text-align: right;
+    margin: 10px;
+}
+
+#inputscreen{
+    margin: 12px;
+    text-align: right;
+    font-size: xx-large;
+}
+
+#buttoncontainer{
+    margin-top: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 25%;
+    flex-wrap: wrap;
+}
+
+.numBox{
+    text-align: center;
+    font-size: xx-large;
+    font-family: 'Courier New', Courier, monospace;
+    width: 50px;
+    height: 50px;
+    background-color: #ADB5BD;
+    margin: 10px;
+    flex-basis: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.numBox#enter{
+    flex-grow: 2;
 }
