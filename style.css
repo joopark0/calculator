@@ -59,6 +59,11 @@ body{
     justify-content: center;
 }
 
+.numBox:hover{
+    background-color: #CED4DA;
+    transition-duration: .4s;
+}
+
 .numBox#enter{
     flex-grow: 2;
 }
