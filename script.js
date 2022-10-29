@@ -25,17 +25,84 @@ function operate(operator, num1, num2){
             return addC(num1, num2);
         case '-':
             return subC(num1, num2);
-        case '*':
+        case 'x':
             return multiplyC(num1, num2);
         case '/':
             return divideC(num1, num2);
+        case '^':
+            return powerC(num1, num2);
     }
 }
 
-function inUpdate(e){
-    document.querySelector("#inputscreen").textContent += this.textContent.trim();
-}
+let opScreen = "";
+let currentNum = "";
+let savedNum = "";
+let operatorHold = "";
+let endResult = "";
 
+function inUpdate(e){
+    this.textContent = this.textContent.trim();
+    if(this.textContent !== 'C'){
+        //If clicked button is not a number
+        if(isNaN(this.textContent)){
+
+            //If input was +/- to make negative/positive
+            if(this.textContent == '+/-' && currentNum !== ""){
+                if (currentNum < 0){
+                    currentNum = Math.abs(currentNum);
+                    document.querySelector("#inputscreen").textContent = currentNum;
+                }else{
+                    currentNum = -currentNum;
+                    document.querySelector("#inputscreen").textContent = currentNum;
+                }
+                //if operating from previous result
+                if(Math.abs(savedNum) == Math.abs(currentNum)){
+                    savedNum = currentNum;
+                }
+
+            }else
+            //Holds the operator and updates operating screen
+            if(this.textContent !== "Enter" && savedNum == ""){
+                operatorHold = this.textContent;
+                savedNum = currentNum;
+                currentNum = "";
+                document.querySelector("#inputscreen").textContent = "";
+                document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} \u00A0`;
+
+            }else if(this.textContent !== "Enter" && savedNum !== ""){
+                //if previous operation
+                operatorHold = this.textContent;
+                currentNum = ""
+                document.querySelector("#inputscreen").textContent = "";
+                document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} \u00A0`;
+            }
+            else{
+                //Operates when user presses Enter
+                endResult = operate(operatorHold, savedNum, currentNum);
+                document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} ${currentNum}\u00A0`
+                document.querySelector("#inputscreen").textContent = endResult;
+                savedNum = endResult;
+                currentNum = endResult;
+            }
+
+
+        }else{
+            //Changes screen to reflect current number and addes to current number
+            document.querySelector("#inputscreen").textContent += this.textContent;
+            currentNum += Number(this.textContent);
+        }
+
+
+    }else {
+        document.querySelector("#inputscreen").textContent = "";
+        document.querySelector("#operatingscreen").textContent = "";
+        opScreen = "";
+        currentNum = "";
+        savedNum = "";
+        operatorHold = "";
+        endResult = "";
+    }
+}
 const allButtons = document.querySelectorAll(".numBox");
 console.log(allButtons);
 
