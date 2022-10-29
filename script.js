@@ -1,22 +1,22 @@
 function addC(a, b){
-    return Number(a)+Number(b);
+    return +(Number(a)+Number(b)).toFixed(12);
 }
 
 function subC(a, b){
-    return a-b;
+    return +(a-b).toFixed(12);
 }
 
 
 function multiplyC(a, b){
-    return a*b;
+    return +(a*b).toFixed(12);
 }
 
 function divideC(a, b){
-    return a/b ;
+    return +(a/b).toFixed(12) ;
 }
 
 function powerC(a, b){
-    return Math.pow(a, b);
+    return +(Math.pow(a, b)).toFixed(12);
 }
 
 function operate(operator, num1, num2){
@@ -64,6 +64,9 @@ function inUpdate(e){
                     savedNum = currentNum;
                 }
 
+            }else if(this.textContent == "."){
+                currentNum += this.textContent;
+                document.querySelector("#inputscreen").textContent = currentNum;
             }else
             //Holds the operator and updates operating screen
             if(this.textContent !== "Enter" && savedNum == ""){
