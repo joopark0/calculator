@@ -71,6 +71,9 @@ function inUpdate(e){
 
             }else if(this.textContent !== "Enter" && savedNum !== ""){
                 //if previous operation
+                if(endResult != ""){
+                    endResult = "";
+                }
                 operatorHold = this.textContent;
                 currentNum = ""
                 document.querySelector("#inputscreen").textContent = "";
@@ -82,7 +85,8 @@ function inUpdate(e){
                 document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} ${currentNum}\u00A0`
                 document.querySelector("#inputscreen").textContent = endResult;
                 savedNum = endResult;
-                currentNum = endResult;
+                
+                //currentNum = endResult;
             }
 
 
