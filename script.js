@@ -38,6 +38,7 @@ let currentNum = "";
 let savedNum = "";
 let operatorHold = "";
 let endResult = "";
+let testCounter = 0;
 
 function inUpdate(e){
     this.textContent = this.textContent.trim();
@@ -48,6 +49,9 @@ function inUpdate(e){
 
             //If input was +/- to make negative/positive
             if(this.textContent == '+/-' && currentNum !== ""){
+                if(savedNum == endResult && savedNum != ""){
+                    currentNum = savedNum;
+                }
                 if (currentNum < 0){
                     currentNum = Math.abs(currentNum);
                     document.querySelector("#inputscreen").textContent = currentNum;
@@ -70,14 +74,20 @@ function inUpdate(e){
                 document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} \u00A0`;
 
             }else if(this.textContent !== "Enter" && savedNum !== ""){
-                //if previous operation
+                //continous operating
+                if(endResult == ""){
+                    endResult = operate(operatorHold, savedNum, currentNum);
+                    document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} ${currentNum}\u00A0`
+                    document.querySelector("#inputscreen").textContent = endResult;
+                    savedNum = endResult;
+                }
                 if(endResult != ""){
                     endResult = "";
                 }
                 operatorHold = this.textContent;
                 currentNum = ""
-                document.querySelector("#inputscreen").textContent = "";
-                document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} \u00A0`;
+                //document.querySelector("#inputscreen").textContent = "";
+                //document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} \u00A0`;
             }
             else{
                 //Operates when user presses Enter
@@ -85,7 +95,7 @@ function inUpdate(e){
                 document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} ${currentNum}\u00A0`
                 document.querySelector("#inputscreen").textContent = endResult;
                 savedNum = endResult;
-                currentNum = endResult;
+                //currentNum = endResult;
             }
 
 
@@ -98,12 +108,14 @@ function inUpdate(e){
                 operatorHold = "";
                 endResult = "";
             }
-            document.querySelector("#inputscreen").textContent += this.textContent;
+            //document.querySelector("#inputscreen").textContent += this.textContent;
             currentNum += Number(this.textContent);
+            document.querySelector("#inputscreen").textContent = currentNum;
         }
 
 
     }else {
+        //Clears everything
         document.querySelector("#inputscreen").textContent = "";
         document.querySelector("#operatingscreen").textContent = "";
         currentNum = "";
