@@ -1,5 +1,5 @@
 function addC(a, b){
-    return a+b;
+    return Number(a)+Number(b);
 }
 
 function subC(a, b){
@@ -34,7 +34,6 @@ function operate(operator, num1, num2){
     }
 }
 
-let opScreen = "";
 let currentNum = "";
 let savedNum = "";
 let operatorHold = "";
@@ -43,6 +42,7 @@ let endResult = "";
 function inUpdate(e){
     this.textContent = this.textContent.trim();
     if(this.textContent !== 'C'){
+
         //If clicked button is not a number
         if(isNaN(this.textContent)){
 
@@ -88,6 +88,13 @@ function inUpdate(e){
 
         }else{
             //Changes screen to reflect current number and addes to current number
+            if(endResult != ""){
+                document.querySelector("#inputscreen").textContent = "";
+                currentNum = "";
+                savedNum = "";
+                operatorHold = "";
+                endResult = "";
+            }
             document.querySelector("#inputscreen").textContent += this.textContent;
             currentNum += Number(this.textContent);
         }
@@ -96,16 +103,17 @@ function inUpdate(e){
     }else {
         document.querySelector("#inputscreen").textContent = "";
         document.querySelector("#operatingscreen").textContent = "";
-        opScreen = "";
         currentNum = "";
         savedNum = "";
         operatorHold = "";
         endResult = "";
     }
 }
-const allButtons = document.querySelectorAll(".numBox");
-console.log(allButtons);
 
+//Get all classes with numBox
+const allButtons = document.querySelectorAll(".numBox");
+
+//Add listeners for every button
 allButtons.forEach((button) => {
     button.addEventListener("click", inUpdate);
 })
