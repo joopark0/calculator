@@ -85,8 +85,7 @@ function inUpdate(e){
                 document.querySelector("#operatingscreen").textContent = `${savedNum} ${operatorHold} ${currentNum}\u00A0`
                 document.querySelector("#inputscreen").textContent = endResult;
                 savedNum = endResult;
-                
-                //currentNum = endResult;
+                currentNum = endResult;
             }
 
 
