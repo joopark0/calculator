@@ -4,6 +4,7 @@ body{
     justify-content: center;
     margin: 100px;
     background-color: rgb(20,20,20);
+    
 }
 
 .container{
@@ -71,11 +72,13 @@ body{
     margin: 10px;
     flex-basis: 20%;
     position: relative;
+    border-style: outset;
     border-width: 1px;
     box-shadow: 0px 0px 1px 1px rgb(0,0,0);
 }
 .numBox:active{
     font-size: 1.9rem;
+    border-style: inset;
 }
 
 .numBox:hover::before{
