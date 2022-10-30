@@ -3,26 +3,32 @@ body{
     align-items: center;
     justify-content: center;
     margin: 100px;
-    background-color: #212529;
+    background-color: rgb(20,20,20);
 }
 
 .container{
     display: flex;
-    background-color:#495057;
+    background-color:rgb(60,60,60);
     width: 400px;
     height: 500px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 0px 0px 1px 1px rgb(0,0,0);
 }
 
 #screen{
     margin: 5px;
     width: 370px;
     height: 100px;
-    background-color: #CED4DA;
+    background-color: #6c757d;
     position: relative;
     overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 0px 0px 1px 1px rgb(0,0,0);
 }
 
 #operatingscreen{
@@ -55,22 +61,47 @@ body{
 
 .numBox{
     text-align: center;
-    font-size: xx-large;
+    font-size: 2rem;
     font-family: 'Courier New', Courier, monospace;
     width: 50px;
     height: 50px;
-    background-color: #ADB5BD;
+    cursor: pointer;
+    background-color: rgba(255,255,255, 0.02);
+    border-radius: 10px;
     margin: 10px;
     flex-basis: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    border-width: 1px;
+    box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+}
+.numBox:active{
+    font-size: 1.9rem;
 }
 
-.numBox:hover{
+.numBox:hover::before{
+    opacity: 1;
+}
+.numBox::before{
+    background: radial-gradient(
+        250px circle at var(--mouse-x) var(--mouse-y),
+        rgba(255,255,255,0.1),
+        transparent 40%
+    );
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left:0px;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    width: 100%;
+    z-index:2;
+    transition: opacity 500ms;
+}
+/*.numBox:hover{
     background-color: #CED4DA;
     transition-duration: .4s;
-}
+}*/
 
 .numBox#enter{
     flex-grow: 2;
